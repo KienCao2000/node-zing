@@ -103,6 +103,12 @@ class ZingMp3 {
     });
   }
 
+  getCategoriesHome() {
+    return this.requestZing({
+      path: "/api/v2/hub/getHome",
+    });
+  }
+
   getWeekChart(id) {
     return this.requestZing({
       path: "/api/v2/chart/getWeekChart",
@@ -119,6 +125,17 @@ class ZingMp3 {
   getTop100() {
     return this.requestZing({
       path: "/api/v2/top100",
+    });
+  }
+
+  getByGenre(id, page) {
+    return this.requestZing({
+      path: "/api/v2/feed/getByGenre",
+      qs: {
+        id,
+        page,
+        count: 10,
+      },
     });
   }
 
