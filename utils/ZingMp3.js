@@ -87,6 +87,14 @@ class ZingMp3 {
       },
     });
   }
+  getSongRecommend(id) {
+    return this.requestZing({
+      path: "/api/v2/recommend/getSongs",
+      qs: {
+        id,
+      },
+    });
+  }
 
   getHome(page = 1) {
     return this.requestZing({
