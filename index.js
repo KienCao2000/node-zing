@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 3000;
+const port = process.env.PORT || 3000;
 const Zing = require("./until/ZingMp3");
 app.use(cors());
 app.get("/home", (req, res) => {
