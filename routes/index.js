@@ -47,6 +47,17 @@ function route(app) {
       res.send(data);
     });
   });
+
+  //[GET] get list song in playlist
+  app.get("/song/get-list", (req, res) => {
+    const id = req.query.id;
+    Zing.getPlaylistSong(id).then((data) => {
+      res.send(data);
+    })
+    .catch(err=>{
+      console.log('co loi', err);
+    })
+  });
 }
 
 module.exports = route;

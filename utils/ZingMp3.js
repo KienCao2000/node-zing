@@ -7,6 +7,7 @@ const encrypt = require("./encrypt");
 const URL_API = "https://zingmp3.vn";
 const API_KEY = "88265e23d4284f25963e6eedac8fbfa3";
 const SECRET_KEY = "2aa2d1c561e809b267f3638c4a307aab";
+const VERSION = "1.3.13"
 const cookiePath = "ZingMp3.json";
 
 if (!fs.existsSync(cookiePath)) fs.closeSync(fs.openSync(cookiePath, "w"));
@@ -57,6 +58,19 @@ class ZingMp3 {
       qs: {
         id,
       },
+    });
+  }
+  async getPlaylistSong(id) {
+    return await this.requestZing({
+      path: "/api/v2/song/getList",
+      qs: {
+        count: 500,
+        id,
+        start: 0,
+        type: 'playlist',
+        version: '1.3.13'
+      },
+      haveParam: 2
     });
   }
 
@@ -168,7 +182,6 @@ class ZingMp3 {
       try {
         await this.getCookie();
         let param = new URLSearchParams(qs).toString();
-
         let sig = this.hashParam(path, param, haveParam);
 
         const data = await request({
@@ -188,11 +201,19 @@ class ZingMp3 {
     });
   }
 
+  //havePram = 2 : get list song in playlist
+
   hashParam(path, param = "", haveParam = 0) {
-    // this.time = Math.floor(Date.now() / 1000);
-    this.time = 1630854164;
+    this.time = Math.round((new Date).getTime() / 1e3)
+    // const time = Math.round((new Date).getTime() / 1e3)
+
+    // this.time = 1630854164;
     let strHash = `ctime=${this.time}`;
     if (haveParam === 0) strHash += param;
+    if(haveParam === 2){
+      const id =  new URLSearchParams(param).get('id')
+      strHash = `count=500ctime=${this.time}id=${id}type=playlistversion=${VERSION}`
+    }
     const hash256 = encrypt.getHash256(strHash);
     return encrypt.getHmac512(path + hash256, SECRET_KEY);
   }
