@@ -19,7 +19,9 @@ function route(app) {
 
   //[GET] get categories
   app.get("/categories", (req, res) => {
+    console.log('vao day');
     Zing.getCategoriesHome().then((data) => {
+      console.log('data', data);
       res.send(data);
     });
   });
@@ -54,8 +56,8 @@ function route(app) {
     Zing.getPlaylistSong(id).then((data) => {
       res.send(data);
     })
-    .catch(err=>{
-      console.log('co loi', err);
+    .catch(()=>{
+      console.log('co loi');
     })
   });
 }

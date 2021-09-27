@@ -45,7 +45,7 @@ class ZingMp3 {
 
   getSectionPlaylist(id) {
     return this.requestZing({
-      path: "/api/v2/playlist/getSectionBottom",
+      path: "/api/v2/playlist/get/section-bottom",
       qs: {
         id,
       },
@@ -54,7 +54,7 @@ class ZingMp3 {
 
   async getDetailPlaylist(id) {
     return await this.requestZing({
-      path: "/api/v2/playlist/getDetail",
+      path: "/api/v2/page/get/playlist",
       qs: {
         id,
       },
@@ -62,7 +62,7 @@ class ZingMp3 {
   }
   async getPlaylistSong(id) {
     return await this.requestZing({
-      path: "/api/v2/song/getList",
+      path: "/api/v2/song/get/getList",
       qs: {
         count: 500,
         id,
@@ -95,7 +95,7 @@ class ZingMp3 {
 
   getStreaming(id) {
     return this.requestZing({
-      path: "/api/v2/song/getStreaming",
+      path: "/api/v2/song/get/getStreaming",
       qs: {
         id,
       },
@@ -103,7 +103,7 @@ class ZingMp3 {
   }
   getSongRecommend(id) {
     return this.requestZing({
-      path: "/api/v2/recommend/getSongs",
+      path: "/api/v2/recommend/get/songs",
       qs: {
         id,
       },
@@ -112,7 +112,7 @@ class ZingMp3 {
 
   getHome(page = 1) {
     return this.requestZing({
-      path: "/api/v2/home",
+      path: "/api/v2/page/get/home",
       qs: {
         page,
       },
@@ -121,13 +121,13 @@ class ZingMp3 {
 
   getChartHome() {
     return this.requestZing({
-      path: "/api/v2/chart/getHome",
+      path: "/api/v2/page/get/chart-home",
     });
   }
 
   getCategoriesHome() {
     return this.requestZing({
-      path: "/api/v2/hub/getHome",
+      path: "/api/v2/page/get/hub-home",
     });
   }
 
@@ -140,13 +140,13 @@ class ZingMp3 {
 
   getNewReleaseChart() {
     return this.requestZing({
-      path: "/api/v2/chart/getNewReleaseChart",
+      path: "/api/v2/page/get/newrelease-chart",
     });
   }
 
   getTop100() {
     return this.requestZing({
-      path: "/api/v2/top100",
+      path: "/api/v2/page/get/top-100",
     });
   }
 
