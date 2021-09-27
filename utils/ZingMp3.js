@@ -62,7 +62,7 @@ class ZingMp3 {
   }
   async getPlaylistSong(id) {
     return await this.requestZing({
-      path: "/api/v2/song/get/getList",
+      path: "/api/v2/song/get/list",
       qs: {
         count: 500,
         id,
@@ -93,9 +93,9 @@ class ZingMp3 {
     });
   }
 
-  getStreaming(id) {
+    getStreaming(id) {
     return this.requestZing({
-      path: "/api/v2/song/get/getStreaming",
+      path: "/api/v2/song/get/streaming",
       qs: {
         id,
       },
